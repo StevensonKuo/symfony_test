@@ -1,0 +1,7 @@
+services:
+    kuo_bar.command.hi:
+        class: 'App\Kuo\Bundle\BarBundle\Command\HiCommand'
+        arguments:
+            - 'bar:hi'
+        tags:
+          { name: console.command  }

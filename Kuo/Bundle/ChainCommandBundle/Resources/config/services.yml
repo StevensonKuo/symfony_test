@@ -1,0 +1,21 @@
+parameters:
+    kuo_chain_command.configure:
+        foo_hello_group:
+            master: foo:hello
+            members:
+                - bar:hi
+
+services:
+    kuo_chain_command.listener.chain_command:
+        class: 'App\Kuo\Bundle\ChainCommandBundle\Listener\ChainCommandListener'
+        arguments:
+            - '@logger'
+            - '@kuo_chain_command.provider.chain_command_configure'
+        tags:
+            - { name: kernel.event_listener, event: console.command, method: onConsoleCommand }
+            - { name: kernel.event_listener, event: console.terminate, method: onConsoleTerminate }
+
+    kuo_chain_command.provider.chain_command_configure:
+        class: 'App\Kuo\Bundle\ChainCommandBundle\Provider\ChainCommandConfigureProvider'
+        arguments:
+            - '%kuo_chain_command.configure%'

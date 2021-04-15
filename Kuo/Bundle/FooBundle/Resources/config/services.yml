@@ -1,0 +1,7 @@
+services:
+    kuo_foo.command.hello:
+        class: 'App\Kuo\Bundle\FooBundle\Command\HelloCommand'
+        arguments:
+            - 'foo:hello'
+        tags:
+            { name: console.command  }
